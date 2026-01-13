@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Sergio Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #2d3561 0%, #1a1f3a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header Navigation */
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 60px 0 100px;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-image-icon {
+            position: absolute;
+            font-size: 64px;
+            z-index: 1;
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-date {
+            font-size: 13px;
+            color: #a5b4fc;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .blog-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .blog-tag {
+            background: rgba(102, 126, 234, 0.3);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            font-weight: 500;
+        }
+
+        .read-time {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .download-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo" onclick="window.location.href='home page.html'">👤</div>
+                <ul class="nav-links">
+                    <li><a href="http://127.0.0.1:5500/home%20page.html">Home</a></li>
+                    <li><a href="http://127.0.0.1:5500/work.html">Works</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="http://127.0.0.1:5500/about%20page.html">About</a></li>
+                </ul>
+                <a href="#" class="download-btn">
+                    📄 Download Resume & Portfolio
+                </a>
+            </nav>
+        </header>
+
+        <section class="blog-section">
+            <div class="blog-header">
+                <h2 class="section-title">Blog & Insights</h2>
+                <p class="section-subtitle">Thoughts, tutorials, and experiences in data science</p>
+            </div>
+
+             <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-box">
+                            <img src="Machine Learning.jpeg" alt="Machine Learning Optimization">
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">January 10, 2026</div>
+                        <h3 class="blog-title">Deep Dive into Machine Learning Model Optimization</h3>
+                        <p class="blog-excerpt">Exploring advanced techniques for optimizing machine learning models, from hyperparameter tuning to architecture design...</p>
+                        <div class="blog-meta">
+                            <span class="blog-tag">Machine Learning</span>
+                            <span class="read-time">5 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-box">
+                            <img src="Neural Network Brain Emblem Vector Image on VectorStock.jpeg" alt="Neural Networks Guide">
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">January 5, 2026</div>
+                        <h3 class="blog-title">Understanding Neural Networks: A Beginner's Guide</h3>
+                        <p class="blog-excerpt">Breaking down the fundamentals of neural networks and how they power modern AI applications...</p>
+                        <div class="blog-meta">
+                            <span class="blog-tag">Deep Learning</span>
+                            <span class="read-time">8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                 <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-box">
+                            <img src="What are UTM Codes in Digital Marketing & How To Use It_ (Free Template).jpeg" alt="Data Visualization">
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">December 28, 2025</div>
+                        <h3 class="blog-title">Data Visualization Best Practices</h3>
+                        <p class="blog-excerpt">Learn how to create compelling and informative visualizations that tell meaningful stories with your data...</p>
+                        <div class="blog-meta">
+                            <span class="blog-tag">Data Viz</span>
+                            <span class="read-time">6 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Blog Post 4 -->
+                 <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-box">
+                            <img src="Start Coding in Python_ A Beginner's Guide for Students.jpeg" alt="Python Libraries">
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">December 20, 2025</div>
+                        <h3 class="blog-title">Python Libraries Every Data Scientist Should Know</h3>
+                        <p class="blog-excerpt">A comprehensive guide to essential Python libraries including NumPy, Pandas, and Scikit-learn...</p>
+                        <div class="blog-meta">
+                            <span class="blog-tag">Python</span>
+                            <span class="read-time">7 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 5 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-box">
+                            <img src="How AI-Powered Automation is Revolutionizing Hospital Operations Without Replacing the Human Touch.jpeg" alt="AI-Powered Solutions for Better Patient Care">
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">December 15, 2025</div>
+                        <h3 class="blog-title">Real-World Applications of AI in Healthcare</h3>
+                        <p class="blog-excerpt">Artificial Intelligence–Based Systems for Enhanced Patient Care Delivery</p>
+                        <div class="blog-meta">
+                            <span class="blog-tag">AI Applications</span>
+                            <span class="read-time">10 min read</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 6 -->
+              <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-box">
+                            <img src="Team Promotes Data Driven Culture Collaboration.jpeg" alt="MLOps Guide">
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">December 10, 2025</div>
+                        <h3 class="blog-title">Getting Started with MLOps</h3>
+                        <p class="blog-excerpt">A practical introduction to MLOps practices and tools for deploying and maintaining machine learning models...</p>
+                        <div class="blog-meta">
+                            <span class="blog-tag">MLOps</span>
+                            <span class="read-time">9 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Blog card click interaction
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('Blog card clicked:', this.querySelector('.blog-title').textContent);
+                // You can add navigation to full blog post here
+            });
+        });
+    </script>
+</body>
+</html>
