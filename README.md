@@ -21,7 +21,7 @@ A personal portfolio website showcasing data science projects and skills.
 - SVG animations
 
 ## Live Demo
-Visit the live website: [Portfolio Website](your-github-username.github.io/portfolio)
+Visit the live website: [Portfolio Website](https://aashish2004-mack.github.io/portfolio-2)
 
 ## Contact
 - Email: your-email@example.com
