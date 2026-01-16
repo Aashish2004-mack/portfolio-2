@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Sergio Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #2d3561 0%, #1a1f3a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header Navigation */
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 60px 0 100px;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .about-text {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #a5b4fc;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-top: 60px;
+        }
+
+        .skills-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .skill-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Experience Section */
+        .experience-section {
+            margin-top: 80px;
+        }
+
+        .experience-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-year {
+            font-size: 14px;
+            color: #a5b4fc;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-company {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-link:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .download-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo" onclick="window.location.href='http://127.0.0.1:5501/index.html'">👤</div>
+                <ul class="nav-links">
+                    <li><a href="http://127.0.0.1:5501/index.html">Home</a></li>
+                    <li><a href="http://127.0.0.1:5501/works.html">Works</a></li>
+                    <li><a href="http://127.0.0.1:5501/blog.html">Blog</a></li>
+                    <li><a href="http://127.0.0.1:5501/about%20page.html" class="active">About</a></li>
+                </ul>
+                <a href="#" class="download-btn">
+                    📄 Download Resume & Portfolio
+                </a>
+            </nav>
+        </header>
+
+        <section class="about-section">
+            <div class="about-header">
+                <h2 class="section-title">About Me</h2>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who I Am</h3>
+                    <p>I'm Ashish A, a passionate data scientist with a deep curiosity for uncovering insights from complex data. My journey in data science is driven by a relentless pursuit of knowledge and a desire to solve real-world problems through innovative analytical approaches.</p>
+                    <p>With expertise spanning machine learning, deep learning, and statistical analysis, I strive to bridge the gap between raw data and actionable intelligence.</p>
+                </div>
+
+                <div class="about-text">
+                    <h3>What I Do</h3>
+                    <p>I specialize in building predictive models, developing data pipelines, and creating visualizations that tell compelling stories. My work involves transforming messy, real-world data into clean, structured insights that drive decision-making.</p>
+                    <p>I'm constantly exploring new methodologies and staying current with the latest developments in AI and machine learning to deliver cutting-edge solutions.</p>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section">
+                <h3 class="skills-title">Skills & Expertise</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">🐍</div>
+                        <div class="skill-name">Python & R</div>
+                        <div class="skill-description">Proficient in Python and R for data analysis, machine learning, and statistical modeling</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">🤖</div>
+                        <div class="skill-name">Machine Learning</div>
+                        <div class="skill-description">Expertise in supervised and unsupervised learning, model optimization, and deployment</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">📊</div>
+                        <div class="skill-name">Data Visualization</div>
+                        <div class="skill-description">Creating insightful visualizations using Tableau, Power BI, and Python libraries</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">🧠</div>
+                        <div class="skill-name">Deep Learning</div>
+                        <div class="skill-description">Building neural networks with TensorFlow, PyTorch, and Keras</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">💾</div>
+                        <div class="skill-name">Big Data</div>
+                        <div class="skill-description">Working with large-scale data using Spark, Hadoop, and cloud platforms</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">📈</div>
+                        <div class="skill-name">Statistical Analysis</div>
+                        <div class="skill-description">Advanced statistical methods, hypothesis testing, and experimental design</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div class="experience-section">
+                <h3 class="experience-title">Experience & Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022 - 2026</div>
+                        <div class="timeline-title"> Education</div>
+                        <div class="timeline-company">Mar ephraem college of engineering</div>
+                        <div class="timeline-description">Bachelor of Engineering in Computer Science Engineering</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025- 2025</div>
+                        <div class="timeline-title">Data Analytics</div>
+                        <div class="timeline-company">AK Infopark</div>
+                        <div class="timeline-description">Built predictive models for customer behavior analysis, implemented automated data pipelines, and created interactive dashboards for stakeholders.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025 - 2026</div>
+                        <div class="timeline-title">Python dev</div>
+                        <div class="timeline-company">Labmentix</div>
+                        <div class="timeline-description">Expense-Tracker,Music player</div>
+                    </div>
+
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h3 class="contact-title">Let's Connect</h3>
+                <div class="contact-links">
+                    <a href="mailto:ashish@example.com" class="contact-link">
+                        📧 Email
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="contact-link">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com" target="_blank" class="contact-link">
+                        💻 GitHub
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="contact-link">
+                        🐦 Twitter
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
